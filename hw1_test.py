@@ -1,9 +1,9 @@
 import data
 import hw1
 import unittest
-from data import Price, Rectangle, Point, Book
+from data import Price, Rectangle, Point, Book, Circle
 
-from hw1 import vowel_count, short_lists, ascending_pairs, add_prices, rectangle_area, books_by_author
+from hw1 import vowel_count, short_lists, ascending_pairs, add_prices, rectangle_area, books_by_author, circle_bound, below_pay_average, employeeList
 
 
 # Write your test cases for each part below.
@@ -43,12 +43,17 @@ class TestCases(unittest.TestCase):
     def test_books_by_author_2(self):
         self.assertEqual(books_by_author("Tom Sawyer", hw1.inputBooks), [])
     # Part 7
-    def
-
+    def test_circle_bound_1(self):
+        self.assertEqual(circle_bound(Rectangle(Point(0,4), Point(4, 0))),
+                         Circle(Point(2.0, 2.0), 1.4142135623730951))
+    def test_circle_bound_2(self):
+        self.assertEqual(circle_bound(Rectangle(Point(1, 4), Point(5, 0))),
+                        Circle(Point(3.0, 2.0), 1.4142135623730951))
     # Part 8
-
-
-
+    def test_below_pay_average_1(self):
+        self.assertEqual((below_pay_average(employeeList)), ['Wanda'])
+    def test_below_pay_average_2(self):
+        self.assertEqual((below_pay_average([])), [])
 
 
 if __name__ == '__main__':

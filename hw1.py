@@ -156,17 +156,20 @@ employeeList = [Employee("Tom", 12),
 #creates a function that takes an input of a list of employees and returns a
 # list of the underpaid workers
 def below_pay_average(inputEmployeeList:list[Employee]) -> list[str]:
+    if len(inputEmployeeList) > 0:
     #initializes the list of underpaid workers
-    underpaidWorkers = []
-    #calculates the wage average
-    avgWage = 0
-    for n in inputEmployeeList:
-        avgWage += n.pay_rate
-    avgWage = avgWage / len(inputEmployeeList)
-    #compares each person to the wage average, and adds them to the underpaid list if they are
-    for n in inputEmployeeList:
-        if n.pay_rate < avgWage:
-            underpaidWorkers.append(n.name)
-    return underpaidWorkers
+        underpaidWorkers = []
+        #calculates the wage average
+        avgWage = 0
+        for n in inputEmployeeList:
+            avgWage += n.pay_rate
+        avgWage = avgWage / len(inputEmployeeList)
+        #compares each person to the wage average, and adds them to the underpaid list if they are
+        for n in inputEmployeeList:
+            if n.pay_rate < avgWage:
+                underpaidWorkers.append(n.name)
+        return underpaidWorkers
+    else:
+        return []
 
 print(below_pay_average(employeeList))
