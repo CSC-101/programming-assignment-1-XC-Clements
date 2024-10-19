@@ -1,5 +1,5 @@
 import data
-from data import Price, Rectangle, Point, Book, Circle
+from data import Price, Rectangle, Point, Book, Circle, Employee
 from math import sqrt
 # Write your functions for each part in the space below.
 
@@ -89,11 +89,13 @@ print(add_prices(newprice1, newprice2))
 
 # Part 5
 print("Part 5")
-
+#creates a function that takes the input rectangle and returns its length
 def length(inputRectangle:Rectangle) -> float:
     return inputRectangle.bottom_right.x - inputRectangle.top_left.x
+#creates a function that takes the input rectangle and returns its height
 def height(inputRectangle:Rectangle) -> float:
     return inputRectangle.top_left.y - inputRectangle.bottom_right.y
+#creates a function that takes the input rectangle and multiplies its height and length
 def rectangle_area(inputRectangle:Rectangle) -> float:
     return height(inputRectangle) * length(inputRectangle)
 
@@ -102,7 +104,7 @@ print(rectangle_area(Rectangle(Point(0,4),Point(4,0))))
 
 # Part 6
 print("Part 6")
-
+#initializes a test list of books
 inputBooks = [Book(["Charles Dickens"],"A Tale of Two Cities"),
               Book(["Mark Twain"], "Huckleberry Finn"),
               Book(["C.S. Lewis"],"The Chronicles of Narnia"),
@@ -110,7 +112,8 @@ inputBooks = [Book(["Charles Dickens"],"A Tale of Two Cities"),
               Book(["Mark Twain", "C.S. Lewis"], "Huckleberry Narnia"),
               Book(["Charles Dickens", "C.S. Lewis"], "The Chronicles of City")]
 
-
+#creates a function that takes an author and list of books and returns all the books they are
+# an author in
 def books_by_author(inputAuthor:str, inputList:list[Book]) -> list[Book]:
     outputList = []
     for n in inputList:
@@ -125,17 +128,19 @@ print(books_by_author("Tom Sawyer", inputBooks))
 
 # Part 7
 print("Part 7")
-
+#creates a function that takes an input rectangle and finds the length of the hypotenuse
 def hypotenuse(inputRectangle:Rectangle) -> float:
     return sqrt(
         inputRectangle.bottom_right.x - inputRectangle.top_left.x +
         inputRectangle.top_left.y - inputRectangle.bottom_right.y
     )
-
+#creates a function that takes an input rectangle and returns a resulting bounding circle
 def circle_bound(inputRectangle:Rectangle) -> Circle:
     outputCircle = Circle(Point(0,0),0)
+    #creates the output circle's center
     outputCircle.center.x = (inputRectangle.top_left.x + (length(inputRectangle) / 2))
     outputCircle.center.y = (inputRectangle.bottom_right.y + (height(inputRectangle) / 2))
+    #finds the circle's radius using the hypotenuse
     outputCircle.radius = hypotenuse(inputRectangle) / 2
     return outputCircle
 
@@ -143,6 +148,25 @@ print(circle_bound(Rectangle(Point(0,4), Point(4, 0))))
 
 # Part 8
 print("Part 8!!!")
+#initializes a test employee List with wages
+employeeList = [Employee("Tom", 12),
+                Employee("Jeff", 13),
+                Employee("Timothy", 12),
+                Employee("Wanda", 4)]
+#creates a function that takes an input of a list of employees and returns a
+# list of the underpaid workers
+def below_pay_average(inputEmployeeList:list[Employee]) -> list[str]:
+    #initializes the list of underpaid workers
+    underpaidWorkers = []
+    #calculates the wage average
+    avgWage = 0
+    for n in inputEmployeeList:
+        avgWage += n.pay_rate
+    avgWage = avgWage / len(inputEmployeeList)
+    #compares each person to the wage average, and adds them to the underpaid list if they are
+    for n in inputEmployeeList:
+        if n.pay_rate < avgWage:
+            underpaidWorkers.append(n.name)
+    return underpaidWorkers
 
-
-
+print(below_pay_average(employeeList))
