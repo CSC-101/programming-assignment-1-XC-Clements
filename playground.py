@@ -1,5 +1,7 @@
 #checking out some interesting timing functions!! not part of the assignemtn just for
 #the fun of optimization
+
+#playground is just a space for testing and implementation for me :)
 import re
 
 vowels = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
